@@ -111,7 +111,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
 	exports.createModule = createModule;
 
@@ -127,67 +127,67 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	function createMessage(id, text, type) {
-		return {
-			id: id,
-			text: text,
-			type: type
-		};
+	  return {
+	    id: id,
+	    text: text,
+	    type: type
+	  };
 	}
 
 	function createModule() {
-		var _actions, _mutations;
+	  var _actions, _mutations;
 
-		var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-		var _options$dismissInter = options.dismissInterval,
-		    dismissInterval = _options$dismissInter === undefined ? 5000 : _options$dismissInter;
+	  var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+	  var _options$dismissInter = options.dismissInterval,
+	      dismissInterval = _options$dismissInter === undefined ? 5000 : _options$dismissInter;
 
 
-		var maxToastId = 0;
+	  var maxToastId = 0;
 
-		var state = {
-			messages: []
-		};
+	  var state = {
+	    messages: []
+	  };
 
-		var getters = {
-			toastMessages: function toastMessages(state) {
-				return state.messages;
-			}
-		};
+	  var getters = {
+	    toastMessages: function toastMessages(state) {
+	      return state.messages;
+	    }
+	  };
 
-		var actions = (_actions = {}, _defineProperty(_actions, ADD, function (_ref, _ref2) {
-			var commit = _ref.commit;
-			var text = _ref2.text,
-			    _ref2$type = _ref2.type,
-			    type = _ref2$type === undefined ? 'info' : _ref2$type,
-			    _ref2$dismissInterval = _ref2.dismissInterval,
-			    dismissInterval = _ref2$dismissInterval === undefined ? dismissInterval : _ref2$dismissInterval;
+	  var actions = (_actions = {}, _defineProperty(_actions, ADD, function (_ref, _ref2) {
+	    var commit = _ref.commit;
+	    var text = _ref2.text,
+	        _ref2$type = _ref2.type,
+	        type = _ref2$type === undefined ? 'info' : _ref2$type,
+	        _ref2$dismissAfter = _ref2.dismissAfter,
+	        dismissAfter = _ref2$dismissAfter === undefined ? dismissInterval : _ref2$dismissAfter;
 
-			var id = ++maxToastId;
+	    var id = ++maxToastId;
 
-			commit(ADD, createMessage(id, text, type));
-			setTimeout(function () {
-				return commit(REMOVE, id);
-			}, dismissInterval);
-		}), _defineProperty(_actions, REMOVE, function (_ref3, id) {
-			var commit = _ref3.commit;
+	    commit(ADD, createMessage(id, text, type));
+	    setTimeout(function () {
+	      return commit(REMOVE, id);
+	    }, dismissAfter);
+	  }), _defineProperty(_actions, REMOVE, function (_ref3, id) {
+	    var commit = _ref3.commit;
 
-			commit(REMOVE, id);
-		}), _actions);
+	    commit(REMOVE, id);
+	  }), _actions);
 
-		var mutations = (_mutations = {}, _defineProperty(_mutations, ADD, function (state, data) {
-			state.messages.push(data);
-		}), _defineProperty(_mutations, REMOVE, function (state, id) {
-			state.messages = state.messages.filter(function (m) {
-				return m.id !== id;
-			});
-		}), _mutations);
+	  var mutations = (_mutations = {}, _defineProperty(_mutations, ADD, function (state, data) {
+	    state.messages.push(data);
+	  }), _defineProperty(_mutations, REMOVE, function (state, id) {
+	    state.messages = state.messages.filter(function (m) {
+	      return m.id !== id;
+	    });
+	  }), _mutations);
 
-		return {
-			state: state,
-			getters: getters,
-			actions: actions,
-			mutations: mutations
-		};
+	  return {
+	    state: state,
+	    getters: getters,
+	    actions: actions,
+	    mutations: mutations
+	  };
 	}
 
 /***/ },
